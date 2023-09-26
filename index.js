@@ -17,10 +17,10 @@ function performQuery(query, values) {
 // inquierer prompts
 inquirer
   .prompt([
-    {
-      type: '',
-      name: '',
-      message: '',
-      choices: [],
-    },
-  ])
+  {
+    type: 'list',
+    name: 'action',
+    message: 'Select an action.',
+    choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department' , 'Add a role' , 'Add an employee', 'Update an employee role'],
+  },
+])

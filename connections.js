@@ -3,10 +3,10 @@ const fs = require("fs");
 
 // MySQL connection
 const connection = mysql.createConnection({
-  host: '127.0.0.1',
+  host: 'localhost',
   user: 'root',
-  password: 'LiquidSwords329388!',
-  database: 'employeecmddb',
+  password: 'LiquidSwords329388',
+  database: 'employeedatabase',
 });
 
 // Connect to the database

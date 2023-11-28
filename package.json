@@ -1,7 +1,29 @@
 {
   "dependencies": {
     "inquirer": "^8.2.6",
+    "my": "^0.3.3",
     "mysql": "^2.18.1",
-    "mysql2": "^3.6.1"
-  }
+    "mysql2": "^2.1.0",
+    "sql": "^0.78.0"
+  },
+  "name": "employee",
+  "description": "The Employee Command-Line Database (employeecmddb) is a simple command-line application that allows you to store and manipulate employee information using an SQL database. With this application, you can manage employee records, roles, and departments efficiently. It provides a user-friendly interface with prompts for data entry and retrieval.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kev1nJ/Employee.git"
+  },
+  "keywords": [
+    "EmployeDatabaseCLI"
+  ],
+  "author": "Kevin Jerome",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kev1nJ/Employee/issues"
+  },
+  "homepage": "https://github.com/Kev1nJ/Employee#readme"
 }

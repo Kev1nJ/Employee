@@ -1,27 +1,26 @@
-USE DATABASE employeecmddb;
+CREATE DATABASE IF NOT EXISTS employeedatabase;
+USE employeedatabase;
 
--- -- Create the departments table
--- CREATE TABLE departments (
---   id INT AUTO_INCREMENT PRIMARY KEY,
---   name VARCHAR(255) NOT NULL
--- );
 
--- -- Create the roles (job titles) table
--- CREATE TABLE roles (
---   id INT AUTO_INCREMENT PRIMARY KEY,
---   title VARCHAR(255) NOT NULL,
---   salary DECIMAL(10, 2) NOT NULL,
---   department_id INT,
---   FOREIGN KEY (department_id) REFERENCES departments(id)
--- );
+CREATE TABLE departments (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  department_name VARCHAR(255) NOT NULL
+);
 
--- -- Create the employees table
--- CREATE TABLE employees (
---   id INT AUTO_INCREMENT PRIMARY KEY,
---   first_name VARCHAR(255) NOT NULL,
---   last_name VARCHAR(255) NOT NULL,
---   role_id INT,
---   manager_id INT,
---   FOREIGN KEY (role_id) REFERENCES roles(id),
---   FOREIGN KEY (manager_id) REFERENCES employees(id)
--- );
+CREATE TABLE roles (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(255) NOT NULL,
+  salary DECIMAL(10, 2) NOT NULL,
+  department_id INT,
+  FOREIGN KEY (department_id) REFERENCES departments(id)
+);
+
+CREATE TABLE employees (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
+  role_id INT,
+  manager_id INT,
+  FOREIGN KEY (role_id) REFERENCES roles(id),
+  FOREIGN KEY (manager_id) REFERENCES employees(id)
+);

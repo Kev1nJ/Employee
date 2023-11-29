@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const db = require('./connections'); 
+const connection = require('./connections'); 
 
 
 // Function to start the application
@@ -50,7 +50,7 @@ function startApp() {
     });
 }
 
-// Continue implementing functions
+
 function viewDepartments() {
   //  SQL query to view departments
   const query = 'SELECT * FROM departments';
@@ -112,64 +112,88 @@ function addDepartment() {
 }
 
 function addRole() {
-  
-  // Inquirer prompt to get role details
   inquirer
-  .prompt({
-    name: 'roletName',
-    type: 'input',
-    message: 'Enter the name of the role:',
-    validate: (input) => {
-      if (input.trim() !== '') {
-        return true;
-      } else {
-        return 'Please enter a role name.';
-      }
-    },
-  })
-  .then((answer) => {
-    const query = 'INSERT INTO roles (role_name) VALUES (?)';
+    .prompt([
+      {
+        name: 'roleName',
+        type: 'input',
+        message: 'Enter the name of the role:',
+        validate: (input) => {
+          if (input.trim() !== '') {
+            return true;
+          } else {
+            return 'Please enter a role name.';
+          }
+        },
+      },
+      {
+        name: 'roleSalary',
+        type: 'input',
+        message: 'Enter the salary for the role:',
+        validate: (input) => {
+          if (!isNaN(input) && parseFloat(input) >= 0) {
+            return true;
+          } else {
+            return 'Please enter a valid salary.';
+          }
+        },
+      },
+    ])
+    .then((answer) => {
+      const query = 'INSERT INTO roles (title, salary) VALUES (?, ?)';
 
-    connection.query(query, [answer.roleName], (err, res) => {
-      if (err) throw err;
+      connection.query(query, [answer.roleName, answer.roleSalary], (err, res) => {
+        if (err) throw err;
 
-      console.log(`\nRole '${answer.roletName}' added successfully.\n`);
+        console.log(`\nRole '${answer.roleName}' added successfully.\n`);
 
-      
-      startApp();
+        startApp();
+      });
     });
-  });
 }
 
 function addEmployee() {
   // Inquirer prompt to get employee details
   inquirer
-  .prompt({
-    name: 'employeeName',
-    type: 'input',
-    message: 'Enter the name of the employee:',
-    validate: (input) => {
-      if (input.trim() !== '') {
-        return true;
-      } else {
-        return 'Please enter an employee name.';
-      }
-    },
-  })
-  .then((answer) => {
-    const query = 'INSERT INTO employees (employee_name) VALUES (?)';
+    .prompt([
+      {
+        name: 'firstName',
+        type: 'input',
+        message: 'Enter the first name of the employee:',
+        validate: (input) => {
+          if (input.trim() !== '') {
+            return true;
+          } else {
+            return 'Please enter a first name.';
+          }
+        },
+      },
+      {
+        name: 'lastName',
+        type: 'input',
+        message: 'Enter the last name of the employee:',
+        validate: (input) => {
+          if (input.trim() !== '') {
+            return true;
+          } else {
+            return 'Please enter a last name.';
+          }
+        },
+      },
+    ])
+    .then((answer) => {
+      const query = 'INSERT INTO employees (first_name, last_name) VALUES (?, ?)';
 
-    connection.query(query, [answer.employeeName], (err, res) => {
-      if (err) throw err;
+      connection.query(query, [answer.firstName, answer.lastName], (err, res) => {
+        if (err) throw err;
 
-      console.log(`\nEmployee '${answer.employeeName}' added successfully.\n`);
+        console.log(`\nEmployee '${answer.firstName} ${answer.lastName}' added successfully.\n`);
 
-      
-      startApp();
+        startApp();
+      });
     });
-  });
- 
 }
+
 
 function updateEmployeeRole() {
 
@@ -219,4 +243,4 @@ function updateEmployeeRole() {
 
 }
 
-
+startApp();

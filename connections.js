@@ -20,15 +20,15 @@ connection.connect((err) => {
 
 module.exports = connection;
 
-// Read the schema.sql file
-const schemaSql = fs.readFileSync('db/schema.sql', 'utf8');
+// // Read the schema.sql file
+// const schemaSql = fs.readFileSync('db/schema.sql', 'utf8');
 
-// Execute the SQL script to initialize the database
-connection.query(schemaSql, (err) => {
-  if (err) {
-    console.error('Error initializing the database:', err);
-  } else {
-    console.log('Database initialized.');
-  }
-  connection.end();
-});
+// // Execute the SQL script to initialize the database
+// connection.query(schemaSql, (err) => {
+//   if (err) {
+//     console.error('Error initializing the database:', err);
+//   } else {
+//     console.log('Database initialized.');
+//   }
+//   connection.end();
+// });
